@@ -1,12 +1,5 @@
 package application;
 
-/**
- * This class reads room info from files 
- * using the (RoomType,Season,price,dateIn,dateOut) fashion separated by ","
- * All the files (.txt) are in textFiles folder in src/main/java
- * The text file is roomsToLoad.txt
- * */
-
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.*;
@@ -16,10 +9,16 @@ import java.util.*;
 import application.Accommodation.AccommodationType;
 import application.Season.SeasonType;
 
+/**
+ * This class reads room info from files using the
+ * (RoomType,Season,price,dateIn,dateOut) fashion separated by "," All the files
+ * (.txt) are in textFiles folder in src/main/java The text file is
+ * roomsToLoad.txt
+ */
 public class RoomLoader {
-
-	SimpleDateFormat sdf;
-	Date date;
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	// TODO not ok
+	// Date date;
 
 	// filePath
 	private String periodsFile2 = "C:\\Users\\stefan1\\workspace1\\C8.1_homework\\src\\main\\java\\textFiles\\roomsToLoad.txt";
@@ -38,6 +37,7 @@ public class RoomLoader {
 		roomTypes = new ArrayList<>();
 		season = new ArrayList<>();
 		prices = new ArrayList<>();
+		// TODO these two should be period
 		dateFrom = new ArrayList<>();
 		dateTo = new ArrayList<>();
 
@@ -54,7 +54,7 @@ public class RoomLoader {
 	// read lines from files
 	private void readDateFromFiles(Path file1, List<AccommodationType> roomTypes, List<SeasonType> season,
 			List<Float> prices, List<Date> roomFrom, List<Date> roomTo) throws InvalidAttributeIdentiefierException,
-			IllegalFormatStringInputException, IllegalDataForPriceException, IllegalFormatInputDateException {
+					IllegalFormatStringInputException, IllegalDataForPriceException, IllegalFormatInputDateException {
 
 		Charset charset = Charset.forName("UTF8");
 
@@ -123,11 +123,15 @@ public class RoomLoader {
 		throw new IllegalFormatStringInputException("Wrong format for room accomodation");
 	}
 
+	// TODO this method and the next one are pretty much the same, just use one
 	// method to convert string from line into a Date variable - dateIn
 	public Date createObjectfromDateIn(String line) throws IllegalFormatInputDateException {
 
 		String[] dates = line.split(","); // size 5
 
+		// TODO since you are using SimpleDateFormat, that has a date pattern,
+		// it is not needed to check using the regex, sds would do just the same
+		// :)
 		String regex = "[\\d]{4}-[\\d]{2}-[\\d]{2}";
 
 		if (dates[3].trim().matches(regex)) {
@@ -155,10 +159,12 @@ public class RoomLoader {
 	}
 
 	// method to convert string to Date object
+	// TODO not ok to play with instance variables in this way, that is why I
+	// have commented it and returned a local variable value upon conversion
 	public Date createDate(String roomDate) {
+		Date date = null;
 
 		try {
-			sdf = new SimpleDateFormat("yyyy-MM-dd");
 			date = sdf.parse(roomDate);
 		} catch (ParseException e) {
 			e.printStackTrace();

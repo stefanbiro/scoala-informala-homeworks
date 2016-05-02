@@ -1,9 +1,9 @@
 package test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -11,11 +11,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import application.*;
+import application.Accommodation;
 import application.Accommodation.AccommodationType;
+import application.Booking;
+import application.BookingPeriod;
+import application.Customer;
+import application.RoomFair;
+import application.Season;
 import application.Season.SeasonType;
+import application.StatusType;
 
-public class TestCancelBooking {
+public class TestCancelBooking extends AbstractBookingTest {
 
 	List<Booking> bookings;
 
@@ -33,45 +39,6 @@ public class TestCancelBooking {
 		// a reserved room
 		bookings.add(new Booking(room, period, customer, 123, 100, StatusType.APROVED));
 
-	}
-
-	private Accommodation createObjectFromAccomodation(AccommodationType type, RoomFair roomFair1) {
-		Accommodation room = new Accommodation();
-		room.setType(type);
-		room.setFair(roomFair1);
-		return room;
-	}
-
-	private RoomFair createRoomFair(double price, Season season) {
-		RoomFair roomf = new RoomFair();
-		roomf.setValue(price);
-		roomf.setSeason(season);
-		return roomf;
-	}
-
-	private Season createSeason(SeasonType type, Date from, Date to) {
-		Season season = new Season();
-		season.setType(type);
-		season.setFrom(from);
-		season.setTo(to);
-		return season;
-	}
-
-	private Customer createObjectFromCustomer(String fname, String lName, String mail, String phone) {
-		Customer customer = new Customer();
-		customer.setfName(fname);
-		customer.setlName(lName);
-		customer.setEmail(mail);
-		customer.setPhone(phone);
-		return customer;
-	}
-
-	private Date getDate(int year, int month, int day) {
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.YEAR, year);
-		c.set(Calendar.MONTH, month);
-		c.set(Calendar.DAY_OF_MONTH, day);
-		return c.getTime();
 	}
 
 	@Test

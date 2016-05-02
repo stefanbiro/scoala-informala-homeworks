@@ -1,5 +1,10 @@
 package application;
 
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.file.*;
+import java.text.*;
+import java.util.*;
 /**
  * This class reads booking periods from files 
  * using the (chekIn,chelOut) fashion
@@ -7,16 +12,9 @@ package application;
  * The text file is periodsToLoad.txt
  * */
 
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.*;
-import java.text.*;
-import java.util.*;
-
 public class PeriodLoader {
 
-	private SimpleDateFormat sdf;
-	private Date date;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	// filePath
 	private String periodsFile2 = "C:\\Users\\stefan1\\workspace1\\C8.1_homework\\src\\main\\java\\textFiles\\periodsToLoad.txt";
@@ -64,6 +62,7 @@ public class PeriodLoader {
 		}
 	}
 
+	// TODO see the comments in RooLoader regarding these methods
 	// this method convert string to date (chekIn)
 	public Date createObjectfromDateIn(String line) throws IllegalFormatInputDateException {
 
@@ -98,9 +97,8 @@ public class PeriodLoader {
 
 	// method that create Date object from string
 	public Date createDate(String line) {
-
+		Date date = null;
 		try {
-			sdf = new SimpleDateFormat("yyyy-MM-dd");
 			date = sdf.parse(line);
 		} catch (ParseException e) {
 			e.printStackTrace();

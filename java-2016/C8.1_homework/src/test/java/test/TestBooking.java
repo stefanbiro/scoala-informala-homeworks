@@ -26,7 +26,7 @@ import application.IllegalFormatStringInputException;
 import application.Season.SeasonType;
 
 // In this test class the rooms to load and periods are readied from files
-public class TestBooking {
+public class TestBooking extends AbstractBookingTest {
 
 	List<Booking> bookings;
 	List<Booking> forStoreBookingToFile;
@@ -91,45 +91,6 @@ public class TestBooking {
 			bookings.add(new Booking(room2, periods.get(i), customer, 123, 100, StatusType.APROVED));
 		}
 
-	}
-
-	private Accommodation createObjectFromAccomodation(AccommodationType type, RoomFair roomFair1) {
-		Accommodation room = new Accommodation();
-		room.setType(type);
-		room.setFair(roomFair1);
-		return room;
-	}
-
-	private RoomFair createRoomFair(double price, Season season) {
-		RoomFair roomf = new RoomFair();
-		roomf.setValue(price);
-		roomf.setSeason(season);
-		return roomf;
-	}
-
-	private Season createSeason(SeasonType type, Date from, Date to) {
-		Season season = new Season();
-		season.setType(type);
-		season.setFrom(from);
-		season.setTo(to);
-		return season;
-	}
-
-	private Customer createObjectFromCustomer(String fname, String lName, String mail, String phone) {
-		Customer customer = new Customer();
-		customer.setfName(fname);
-		customer.setlName(lName);
-		customer.setEmail(mail);
-		customer.setPhone(phone);
-		return customer;
-	}
-
-	private Date getDate(int year, int month, int day) {
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.YEAR, year);
-		c.set(Calendar.MONTH, month);
-		c.set(Calendar.DAY_OF_MONTH, day);
-		return c.getTime();
 	}
 
 	/*
@@ -239,12 +200,15 @@ public class TestBooking {
 		int yearOut = 2016;
 		int monthOut = 4;
 		int dayOut = 8;
+		// TODO this is not used
 		AccommodationType type = AccommodationType.DOUBLE;
 
 		assertFalse(chekYears(yearIn, yearOut));
 		assertFalse(chekMonts(monthIn, monthOut));
 		assertFalse(chekDays(dayIn, dayOut));
 
+		// TODO this is too complex, check that the date out is after the date
+		// in and the period between the two is not bigger than x days ;)
 		// if the dates is correct your book can take place
 		if (chekYears(yearIn, yearOut) && chekMonts(monthIn, monthOut) && chekDays(dayIn, dayOut)) {
 

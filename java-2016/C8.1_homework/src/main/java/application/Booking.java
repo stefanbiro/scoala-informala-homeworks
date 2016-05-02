@@ -1,10 +1,11 @@
 package application;
-
+//TODO please add javadoc
 public class Booking {
 
 	private Accommodation room;
 	private BookingPeriod bookingPeriod;
 
+	//why default access ?
 	Customer c;
 	int id;
 	double price;

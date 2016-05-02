@@ -1,11 +1,12 @@
 package application;
 
-
+//TODO please add javadoc
 public class Accommodation {
 
 	private String description;
 	private int maxGuests;
 	private RoomFair fair;
+	//don't you need to access these outside and create getters and setters for them ?
 	private String roomId;
 	private float price;
 

@@ -13,11 +13,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import application.*;
+import application.Accommodation;
 import application.Accommodation.AccommodationType;
+import application.Booking;
+import application.BookingPeriod;
+import application.Customer;
+import application.RoomFair;
+import application.Season;
 import application.Season.SeasonType;
+import application.StatusType;
 
-public class TestViewBooking {
+public class TestViewBooking extends AbstractBookingTest {
 
 	List<Booking> bookings;
 	Accommodation room;
@@ -38,45 +44,6 @@ public class TestViewBooking {
 		// here is missing the add of Booking object to bookings List
 		// we add the object(in a test method) only after a customer
 		// cheek the dates
-	}
-
-	private Accommodation createObjectFromAccomodation(AccommodationType type, RoomFair roomFair1) {
-		Accommodation room = new Accommodation();
-		room.setType(type);
-		room.setFair(roomFair1);
-		return room;
-	}
-
-	private RoomFair createRoomFair(double price, Season season) {
-		RoomFair roomf = new RoomFair();
-		roomf.setValue(price);
-		roomf.setSeason(season);
-		return roomf;
-	}
-
-	private Season createSeason(SeasonType type, Date from, Date to) {
-		Season season = new Season();
-		season.setType(type);
-		season.setFrom(from);
-		season.setTo(to);
-		return season;
-	}
-
-	private Customer createObjectFromCustomer(String fname, String lName, String mail, String phone) {
-		Customer customer = new Customer();
-		customer.setfName(fname);
-		customer.setlName(lName);
-		customer.setEmail(mail);
-		customer.setPhone(phone);
-		return customer;
-	}
-
-	private Date getDate(int year, int month, int day) {
-		Calendar c = Calendar.getInstance();
-		c.set(Calendar.YEAR, year);
-		c.set(Calendar.MONTH, month);
-		c.set(Calendar.DAY_OF_MONTH, day);
-		return c.getTime();
 	}
 
 	// at positive testing, the application after run assertions show the input

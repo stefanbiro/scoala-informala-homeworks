@@ -1,7 +1,7 @@
 package application;
 
 import java.util.Date;
-
+//TODO please add javadoc
 public class Season {
 
 	private Date from;

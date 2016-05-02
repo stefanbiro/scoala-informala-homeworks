@@ -1,5 +1,5 @@
 package application;
-
+//TODO please add javadoc
 public class RoomFair {
 
 	private double value;
